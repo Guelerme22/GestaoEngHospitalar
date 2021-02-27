@@ -7,8 +7,9 @@ class Home extends React.Component {
   render() {
 
 
-    return (<div>
-      PAGINA DE CADASTRO DE MÁQUINAS
+    return (
+    <div>
+     
     </div>
     );
   }
