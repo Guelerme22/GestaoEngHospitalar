@@ -63,7 +63,7 @@ class CadastrarFornecedor extends React.Component {
   }
 
   deletarFornecedor = (idRecebido) =>{
-    axios.delete("http://localhost:8080/fornecedor/deletar", {
+    axios.post("http://localhost:8080/fornecedor/deletar", {
       id: idRecebido
     }).then(response=>{
       this.listarFornecedores()

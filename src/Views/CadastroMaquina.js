@@ -59,12 +59,15 @@ class CadastroMaquina extends React.Component {
   }
 
   deletarMaquinas = (idRecebido) =>{
-    axios.delete("http://localhost:8080/maquina/deletar", {
+    axios.post("http://localhost:8080/maquina/deletar", {
       id: idRecebido
     }).then(response=>{
       this.listarMaquinas()
 
     }).catch(error =>{
+      this.setState({
+        menssagemDeErro: "Erro ao deletar máquina! Esta sendo usada por modelos e equipamentos."
+      })
 
     })
   }
@@ -85,7 +88,8 @@ class CadastroMaquina extends React.Component {
             <input onChange={(e) => this.handleMaquinas(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Maquinas" />
           </div>
           <button onClick={(e) => this.cadastrar()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
-          
+
+     
     </div>
     <div className="col-lg-6" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
 
@@ -112,6 +116,10 @@ class CadastroMaquina extends React.Component {
 
   </tbody>
 </table>
+<br>
+</br><p style={{color: "red"}}>
+{this.state.menssagemDeErro}
+</p>
     </div>
     </div>
     </div>
