@@ -28,6 +28,9 @@ class Menu extends React.Component {
         <a className="nav-link" href="#/cadastro-modelo" _msthash={574496} _msttexthash={94796}>Cadastrar modelo</a>
       </li>
       <li className="nav-item">
+        <a className="nav-link" href="#/cadastro-equipamento" _msthash={574496} _msttexthash={94796}>Cadastrar Equipamento</a>
+      </li>
+      <li className="nav-item">
         <a className="nav-link" href="#/cadastro-maquina" _msthash={574873} _msttexthash={59826}>Cadastrar Máquina</a>
       </li>
       <li className="nav-item dropdown">
