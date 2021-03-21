@@ -28,10 +28,10 @@ class Menu extends React.Component {
         <a className="nav-link" href="#/cadastro-modelo" _msthash={574496} _msttexthash={94796}>Cadastrar modelo</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#/cadastro-equipamento" _msthash={574496} _msttexthash={94796}>Cadastrar Equipamento</a>
+        <a className="nav-link" href="#/cadastro-inventario" _msthash={574496} _msttexthash={94796}>Inventario</a>
       </li>
       <li className="nav-item">
-        <a className="nav-link" href="#/cadastro-maquina" _msthash={574873} _msttexthash={59826}>Cadastrar Máquina</a>
+        <a className="nav-link" href="#/cadastro-equipamento" _msthash={574873} _msttexthash={59826}>Cadastrar Equipamento</a>
       </li>
       <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" _msthash={575250} _msttexthash={117338}>Dropdown</a>

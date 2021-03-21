@@ -4,9 +4,9 @@ import { Redirect , BrowserRouter, Route, Switch, HashRouter  } from 'react-rout
 import Home from '../Views/Home';
 import CadastroModelo from '../Views/CadastroModelo';
 import Login from '../Views/Login';
-import CadastroMaquina from '../Views/CadastroMaquina';
-import CadastrarFornecedor from '../Views/CadastroFornecedor';
 import CadastroEquipamento from '../Views/CadastroEquipamento';
+import CadastrarFornecedor from '../Views/CadastroFornecedor';
+import CadastroInventario from '../Views/CadastroInventario';
 
 
 function Rotas(props) {
@@ -17,9 +17,9 @@ function Rotas(props) {
         <Route exact path="/" component={Home} />
             <Route path="/cadastro-modelo" component={CadastroModelo} />
             <Route path="/login" component={Login} />
-            <Route path="/cadastro-maquina" component={CadastroMaquina} />
-            <Route path="/cadastro-fornecedor" component={CadastrarFornecedor} />
             <Route path="/cadastro-equipamento" component={CadastroEquipamento} />
+            <Route path="/cadastro-fornecedor" component={CadastrarFornecedor} />
+            <Route path="/cadastro-inventario" component={CadastroInventario} />
         </Switch>
     </HashRouter>
 

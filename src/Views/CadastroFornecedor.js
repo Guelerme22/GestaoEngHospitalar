@@ -7,8 +7,10 @@ class CadastrarFornecedor extends React.Component {
   state = {
     fornecedor: '',
     //variavel
+    email:'',
+    endereco:'',
     listaDeFornecedores: [],
-    menssagemDeErro:''
+    menssagemDeErro:null
   }
 
   //funcao que é chamada quando o programa inicia
@@ -20,7 +22,7 @@ class CadastrarFornecedor extends React.Component {
 
     //chamada da api
     console.log("entrou em listar fornecedores")
-    axios.get("http://localhost:8080/fornecedor")
+    axios.get("https://engenharia-gestao-hospitalar.herokuapp.com/fornecedor")
       .then(response => {
 
           console.log("response:", response.data)
@@ -42,11 +44,33 @@ class CadastrarFornecedor extends React.Component {
     console.log("o valor da variavel fornecer:", this.state.fornecedor)
   }
 
+  handleEmail = (e) => {
+    console.log("entrou no handleemail")
+    this.setState({
+      email: e.target.value
+    })
+  }
+
+  handleEndereco = (e) => {
+    console.log("entrou no handleendereço")
+    this.setState({
+      endereco: e.target.value
+    })
+  }
+
+  fecharAlertadeErro = () =>{
+    this.setState({
+      menssagemDeErro: null
+    })
+  }
+
   cadastrar = () => {
     console.log("botão clicado")
 
-    axios.post("http://localhost:8080/fornecedor", {
-      fornecedor: this.state.fornecedor
+    axios.post("https://engenharia-gestao-hospitalar.herokuapp.com/fornecedor", {
+      fornecedor: this.state.fornecedor,
+      email: this.state.email,
+      endereco: this.state.endereco
 
     }).then(response => {
       console.log("A api foi chamada com sucesso")
@@ -63,12 +87,15 @@ class CadastrarFornecedor extends React.Component {
   }
 
   deletarFornecedor = (idRecebido) =>{
-    axios.post("http://localhost:8080/fornecedor/deletar", {
+    axios.post("https://engenharia-gestao-hospitalar.herokuapp.com/fornecedor/deletar", {
       id: idRecebido
     }).then(response=>{
       this.listarFornecedores()
 
     }).catch(error =>{
+      this.setState({
+        menssagemDeErro: error.response.data.error
+      })
 
     })
   }
@@ -87,10 +114,18 @@ class CadastrarFornecedor extends React.Component {
 
           <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
             <label htmlFor="exampleInputEmail1">Fornecedor</label>
-            <input onChange={(e) => this.handleFornecedor(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fornecedor" />
+            <input style={{border:"2px solid black"}} onChange={(e) => this.handleFornecedor(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fornecedor" />
+          </div>
+          <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
+            <label htmlFor="exampleInputEmail1">Endereço</label>
+            <input style={{border:"2px solid black"}} onChange={(e) => this.handleEndereco(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Endereço" />
+          </div>
+          <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
+            <label htmlFor="exampleInputEmail1">Email</label>
+            <input style={{border:"2px solid black"}} onChange={(e) => this.handleEmail(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
           </div>
           <button onClick={(e) => this.cadastrar()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
-          {this.state.menssagemDeErro}
+          
 
         </div>
         <div className="col-lg-6" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
@@ -100,6 +135,8 @@ class CadastrarFornecedor extends React.Component {
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Fornecedores Cadastrados</th>
+                <th scope="col">Endereços Cadastrados</th>
+                <th scope="col">Email Cadastrado</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -108,6 +145,8 @@ class CadastrarFornecedor extends React.Component {
                 <tr>
                   <th scope="row">{fornecedorAtual.id}</th>
                   <td>{fornecedorAtual.fornecedor}</td>
+                  <td>{fornecedorAtual.endereco}</td>
+                  <td>{fornecedorAtual.email}</td>
                   <td > <svg onClick = {(e)=> this.deletarFornecedor(fornecedorAtual.id)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
   <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -118,6 +157,14 @@ class CadastrarFornecedor extends React.Component {
 
             </tbody>
           </table>
+
+          {this.state.menssagemDeErro == null? false :
+          <div className="alert alert-dismissible alert-danger">
+        <button onClick={(e) => this.fecharAlertadeErro()} type="button" className="close" data-dismiss="alert">×</button>
+        <strong></strong> <a href="#" className="alert-link">{this.state.menssagemDeErro}</a> 
+      </div>
+      }
+
           
         </div>
       </div>
