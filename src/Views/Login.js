@@ -108,7 +108,10 @@ console.log("entrou aqui ", id.replace(".","").replace(".","").replace(".","").r
     } else {
     return (<div>
       <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
-        <h1>Login</h1>
+        <h2>Login</h2>
+        <hr></hr>
+
+        
       </div>
       <div className="row espacamento" >
         <div className="col-lg-12" >

@@ -126,9 +126,11 @@ class CadastroInventario extends React.Component {
     render() {
         return (<div>
             <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
-                <h1>INVENTARIO</h1>
+                <h2>INVENTÁRIO</h2>
+                <hr></hr>
+
             </div>
-            <div className="row">
+            <div className="row" style={{marginBottom:'100px'}}>
                 <div className="col-lg-12" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
 
                     <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
@@ -305,10 +307,9 @@ class CadastroInventario extends React.Component {
 
 
                     <button onClick={(e) => this.mostrarValorDasVariaveis()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
-                {this.state.mensagemSucesso}
 
                 </div>
-
+            
                 
             </div>
         </div>

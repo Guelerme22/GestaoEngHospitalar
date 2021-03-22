@@ -100,7 +100,8 @@ class CadastrarUsuario extends React.Component {
     render() {
         return (<div>
             <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
-                <h1>Cadastre-se</h1>
+                <h2>Cadastre-se</h2>
+                <hr></hr>
             </div>
             <div className="row espacamento" >
                 <div className="col-lg-12" >

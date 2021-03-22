@@ -2,6 +2,7 @@ import React from 'react';
 //import { AuthContext } from '../Main/ProvedorAutenticacao';
 import NavbarItem from './NavbarItem';
 import { AuthContext } from '../Main/ProvedorAutenticacao';
+import universidade from '../assets/universidade.png'
 
 
 
@@ -63,10 +64,7 @@ class Menu extends React.Component {
     return (
       <div ref={node => this.node = node}>
         <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: 'black' }} >
-          {!this.context.isAuthenticated ?
-            <a className="navbar-brand" href="#/Cadastro">GESTÃO</a> :
-            <a className="navbar-brand" href="#/bem-vindo">GESTÃO  </a>
-          }
+        <img style={{width:'130px', marginRight:'20px'}}src = {universidade}></img> 
           <button onClick={this.abrirMenu} className={this.state.abrirMenu ? "navbar-toggler" : "navbar-toggler collapsed"} type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" >
             <span className="navbar-toggler-icon" />
           </button>
@@ -82,7 +80,7 @@ class Menu extends React.Component {
                   <a className="nav-link" href="#/cadastro-modelo">Cadastrar modelo</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#/cadastro-inventario">Inventario</a>
+                  <a className="nav-link" href="#/cadastro-inventario">Cadastrar Inventário</a>
                 </li>
             
                 <li className="nav-item">

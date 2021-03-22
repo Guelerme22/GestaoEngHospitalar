@@ -107,7 +107,9 @@ class CadastrarFornecedor extends React.Component {
     return (<div>
 
       <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
-        <h1>CADASTRAR FORNECEDOR</h1>
+        <h2>CADASTRAR FORNECEDOR</h2>
+        <hr></hr>
+
       </div>
       <div className="row">
         <div className="col-lg-6" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
