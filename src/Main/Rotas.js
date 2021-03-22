@@ -8,6 +8,7 @@ import CadastroEquipamento from '../Views/CadastroEquipamento';
 import CadastrarFornecedor from '../Views/CadastroFornecedor';
 import CadastroInventario from '../Views/CadastroInventario';
 import CadastrarUsuario from '../Views/CadastrarUsuario'
+import ListaInventario from '../Views/ListaInventario';
 
 function Rotas(props) {
 
@@ -20,6 +21,7 @@ function Rotas(props) {
             <Route path="/cadastro-equipamento" component={CadastroEquipamento} />
             <Route path="/cadastro-fornecedor" component={CadastrarFornecedor} />
             <Route path="/cadastro-usuario" component={CadastrarUsuario} />
+            <Route path="/lista-inventario" component={ListaInventario} />
 
             <Route path="/cadastro-inventario" component={CadastroInventario} />
         </Switch>

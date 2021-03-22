@@ -82,7 +82,9 @@ class Menu extends React.Component {
                 <li className="nav-item">
                   <a className="nav-link" href="#/cadastro-inventario">Cadastrar Inventário</a>
                 </li>
-            
+                <li className="nav-item">
+                  <a className="nav-link" href="#/lista-inventario">Inventário</a>
+                </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#/cadastro-equipamento">Cadastrar Equipamento</a>
                 </li>
