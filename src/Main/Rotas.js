@@ -7,7 +7,7 @@ import Login from '../Views/Login';
 import CadastroEquipamento from '../Views/CadastroEquipamento';
 import CadastrarFornecedor from '../Views/CadastroFornecedor';
 import CadastroInventario from '../Views/CadastroInventario';
-
+import CadastrarUsuario from '../Views/CadastrarUsuario'
 
 function Rotas(props) {
 
@@ -19,6 +19,8 @@ function Rotas(props) {
             <Route path="/login" component={Login} />
             <Route path="/cadastro-equipamento" component={CadastroEquipamento} />
             <Route path="/cadastro-fornecedor" component={CadastrarFornecedor} />
+            <Route path="/cadastro-usuario" component={CadastrarUsuario} />
+
             <Route path="/cadastro-inventario" component={CadastroInventario} />
         </Switch>
     </HashRouter>
