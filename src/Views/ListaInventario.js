@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Redirect } from 'react-router';
 import axios from 'axios'
+import { AuthContext } from '../Main/ProvedorAutenticacao';
+
 class ListaInventario extends React.Component {
     state = {
         ListaInventario:[]
@@ -9,7 +11,7 @@ class ListaInventario extends React.Component {
     }
 
     componentDidMount() {
-        //this.listarInventario()
+        this.listarInventario()
 
     }
 
@@ -35,7 +37,7 @@ class ListaInventario extends React.Component {
                 <div className="col-lg-12" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
 
                   
-            
+            <div>Em construção</div>
                 
             </div>
         </div>
@@ -53,4 +55,5 @@ class ListaInventario extends React.Component {
 
 
 }
-export default ListaInventario
+ListaInventario.contextType = AuthContext;
+export default ListaInventario;
