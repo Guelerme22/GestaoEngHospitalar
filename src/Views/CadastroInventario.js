@@ -13,7 +13,8 @@ class CadastroInventario extends React.Component {
         dataDaAquisicao: "",
         inicioDaGarantia: "",
         listaDeModelos: [],
-        mensagemSucesso: null
+        mensagemSucesso: null,
+        utilizaAcessorios: false
 
     }
 
@@ -75,6 +76,27 @@ class CadastroInventario extends React.Component {
         })
     }
 
+    handleAcessorios = (e) => {
+        if (e == true) {
+            this.setState({
+                utilizaAcessorios: true
+            })
+        } else {
+        this.setState({
+            utilizaAcessorios:false
+        })
+
+        }
+    }
+
+    handleUtilizaGases = (e) =>{
+
+    }
+
+    handleAlimentacaoHidraulica = (e) =>{
+        
+    }
+
     handleValorcompra = (e) => {
         console.log("entrou na descrição")
         this.setState({
@@ -125,87 +147,172 @@ class CadastroInventario extends React.Component {
                         <div className="form-group">
                             <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
                         </div>
-                        <label htmlFor="exampleInputEmail1">NUMERO DE SERIE</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleNserie(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero de Série" />
+                        <div className="row">
+                            <div className="col-lg-4">
+                                <label htmlFor="exampleInputEmail1">NUMERO DE SERIE</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleNserie(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero de Série" />
+                                </div>
+                            </div>
+                            <div className="col-lg-4">
+                                <label htmlFor="exampleInputEmail1">NOTA FISCAL</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleNotafiscal(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nota Fiscal" />
+                                </div>
+                            </div>
+                            <div className="col-lg-4">
+                                <label htmlFor="exampleInputEmail1">VALOR DA COMPRA</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleValorcompra(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Valor da Compra" />
+                                </div>
+                            </div>
                         </div>
+
+
                         <label htmlFor="exampleInputEmail1">CENTRO DE CUSTO</label>
                         <div className="form-group">
                             <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleCentro(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Centro de Custo" />
                         </div>
-                        <label htmlFor="exampleInputEmail1">NOTA FISCAL</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleNotafiscal(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nota Fiscal" />
-                        </div>
-                        <label htmlFor="exampleInputEmail1">VALOR DA COMPRA</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleValorcompra(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Valor da Compra" />
-                        </div>
+
+                        <div className="row">
+                        <div className="col-lg-6">
                         <label htmlFor="exampleInputEmail1">DATA DE AQUISIÇÃO</label>
                         <div className="form-group" style={{ border: "2px solid black" }}>
                             <input type="date" onChange={(e) => this.handleDataaquisicao(e)} className="form-control" ></input>
                         </div>
+                        </div>
 
+                        <div className="col-lg-6">
                         <label htmlFor="exampleInputEmail1">INICIO DA GARANTIA</label>
                         <div className="form-group" style={{ border: "2px solid black" }}>
                             <input type="date" onChange={(e) => this.handleDatagarantia(e)} className="form-control" ></input>
                         </div>
-
-                        <label htmlFor="exampleInputEmail1">POTENCIA</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
                         </div>
-
-                        <div className="col-lg-3">
-                        <label htmlFor="exampleInputEmail1">CORRENTE</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
-                        </div>
-                        </div>
-                        <label htmlFor="exampleInputEmail1">ALIMENTAÇÃO ELETRICA</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
                         </div>
 
                         <div className="row">
-                        <div className="col-lg-3">
-                            <label htmlFor="exampleInputEmail1">PESO</label>
-                            <div className="form-group">
-                                <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
+                            <div className="col-lg-4">
+                                <label htmlFor="exampleInputEmail1">POTENCIA</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Potencia" />
+                                </div>
+                            </div>
+
+                            <div className="col-lg-4">
+                                <label htmlFor="exampleInputEmail1">CORRENTE</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Corrente" />
+                                </div>
+                            </div>
+                            <div className="col-lg-4">
+                                <label htmlFor="exampleInputEmail1">ALIMENTAÇÃO ELETRICA</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Alimentação Eletrica" />
+                                </div>
                             </div>
                         </div>
-                        <div className="col-lg-3">
-                        <label htmlFor="exampleInputEmail1">ALTURA</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
-                        </div>
-                        </div>
-                        <div className="col-lg-3">
-                        <label htmlFor="exampleInputEmail1">LARGURA</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
-                        </div>
-                        </div>
-                        <div className="col-lg-3">
-                        <label htmlFor="exampleInputEmail1">COMPRIMENTO</label>
-                        <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
-                        </div>
-                        </div>
+
+                        <div className="row">
+                            <div className="col-lg-3">
+                                <label htmlFor="exampleInputEmail1">PESO</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Peso" />
+                                </div>
+                            </div>
+                            <div className="col-lg-3">
+                                <label htmlFor="exampleInputEmail1">ALTURA</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Altura" />
+                                </div>
+                            </div>
+                            <div className="col-lg-3">
+                                <label htmlFor="exampleInputEmail1">LARGURA</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Largura" />
+                                </div>
+                            </div>
+                            <div className="col-lg-3">
+                                <label htmlFor="exampleInputEmail1">COMPRIMENTO</label>
+                                <div className="form-group">
+                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Comprimento" />
+                                </div>
+                            </div>
                         </div>
 
 
+                        <div className="row">
+                            <div className="col-lg-3">
+                                <label htmlFor="exampleInputEmail1">ALIMENTAÇÃO HIDRAULICA?</label>
+                                <div className="form-check" >
+                                    <label className="form-check-label">
+                                        <input type="radio" className="form-check-input" name="alimentacaoHidraulica" id="alimentacaoHidraulica" defaultValue="option1" defaultChecked />
+            SIM
+          </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input type="radio" className="form-check-input" name="alimentacaoHidraulica" id="alimentacaoHidraulica" defaultValue="option2" />
+            NÃO
+          </label>
+                                </div>
+                            </div>
+                            <div className="col-lg-3">
+                                <label htmlFor="exampleInputEmail1">UTILIZA GASES?</label>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input type="radio" className="form-check-input" name="utilizaGases" id="optionsRadios1" defaultValue="option1" defaultChecked />
+            SIM
+          </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input type="radio" className="form-check-input" name="utilizaGases" id="optionsRadios2" defaultValue="option2" />
+            NÃO
+          </label>
+                                </div>
+                            </div>
 
-
+                            <div className="col-lg-3">
+                                <label htmlFor="exampleInputEmail1">UTILIZA ACESSORIOS?</label>
+                                <div className="form-check">
+                                    <label onChange={(e) => this.handleAcessorios(true)} className="form-check-label">
+                                        <input type="radio" className="form-check-input" name="utilizaAcessorios" id="optionsRadios1" defaultValue="option1" defaultChecked />
+            SIM
+          </label>
+                                </div>
+                                <div className="form-check">
+                                    <label className="form-check-label">
+                                        <input type="radio" onChange={(e) => this.handleAcessorios(false)} className="form-check-input" name="utilizaAcessorios" id="optionsRadios2" defaultValue="option2" />
+            NÃO
+          </label>
+                                </div>
+                            </div>
+                            {this.state.utilizaAcessorios == true ?
+                                <div className="col-lg-3">
+                                    <label htmlFor="exampleInputEmail1">QUAIS ACESSORIOS?</label>
+                                    <label htmlFor="exampleInputEmail1"></label>
+                                    <div className="form-group">
+                                        <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Quais acessorio?" />
+                                    </div>
+                                </div>
+                                : false
+                            }
+                        </div>
 
                     </div>
 
+
+
+
                     <button onClick={(e) => this.mostrarValorDasVariaveis()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
-                    {this.state.mensagemSucesso}
+                {this.state.mensagemSucesso}
 
                 </div>
+
+                
             </div>
         </div>
+
 
 
 
