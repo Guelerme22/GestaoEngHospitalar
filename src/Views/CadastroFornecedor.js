@@ -112,20 +112,43 @@ class CadastrarFornecedor extends React.Component {
 
       </div>
       <div className="row">
-        <div className="col-lg-6" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
+        <div className="col-lg-5" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
 
           <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
             <label htmlFor="exampleInputEmail1">Fornecedor</label>
             <input style={{border:"2px solid black"}} onChange={(e) => this.handleFornecedor(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Fornecedor" />
           </div>
+
           <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
             <label htmlFor="exampleInputEmail1">Endereço</label>
             <input style={{border:"2px solid black"}} onChange={(e) => this.handleEndereco(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Endereço" />
           </div>
+
           <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
             <label htmlFor="exampleInputEmail1">Email</label>
             <input style={{border:"2px solid black"}} onChange={(e) => this.handleEmail(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
           </div>
+
+          <div className="col-lg-5" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
+          <div className="row" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
+          <div className="form-group" style={{ marginBottom: "20px", marginTop: "20px" }}>
+            <label htmlFor="exampleInputEmail1">Telefone</label>
+            <input style={{border:"2px solid black"}} onChange={(e) => this.handleTelefone(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Telefone" />
+          </div>
+
+          <div className="form-group" style={{ marginBottom: "20px", marginTop: "20px" }}>
+            <label htmlFor="exampleInputEmail1">WhatsApp</label>
+            <input style={{border:"2px solid black"}} onChange={(e) => this.handleWhatsApp(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="WhatsApp" />
+          </div>
+
+          <div className="form-group" style={{ marginBottom: "20px", marginTop: "20px" }}>
+            <label htmlFor="exampleInputEmail1">Pessoa de Contato</label>
+            <input style={{border:"2px solid black"}} onChange={(e) => this.handlePessoa(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pessoa de Contato" />
+          </div>
+          </div>
+          </div>
+
+
           <button onClick={(e) => this.cadastrar()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
           
 
