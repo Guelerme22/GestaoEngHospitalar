@@ -5,6 +5,7 @@ import axios from 'axios'
 class CadastroInventario extends React.Component {
     state = {
         modelo: "",
+        fornecedor:"",
         descricaoSimplificada: "",
         numeroDeSerie: "",
         centroDeCusto: "",
@@ -14,12 +15,14 @@ class CadastroInventario extends React.Component {
         inicioDaGarantia: "",
         listaDeModelos: [],
         mensagemSucesso: null,
-        utilizaAcessorios: false
+        utilizaAcessorios: false,
+        listaDeFornecedores:[]
 
     }
 
     componentDidMount() {
         this.listarModelos()
+        this.listarFornecedores()
 
     }
     cadastraModelo = () => {
@@ -41,6 +44,25 @@ class CadastroInventario extends React.Component {
             console.log("deu erro")
         })
     }
+    listarFornecedores = () =>{
+        axios.get("https://engenharia-gestao-hospitalar.herokuapp.com/fornecedor").then(response => {
+            this.setState({
+                listaDeFornecedores: response.data
+            })
+            console.log("deu certo chamar", this.state.listaDeFornecedores)
+        }).catch(error => {
+            console.log("deu erro")
+        })
+    }
+
+    handleFornecedor = (e) => {
+        this.setState({
+          fornecedor: e.target.value
+        })
+        console.log("o valor da variavel fornecer:", this.state.fornecedor)
+      }
+
+
     handleDescricao = (e) => {
         console.log("entrou na descrição")
         this.setState({
@@ -68,6 +90,7 @@ class CadastroInventario extends React.Component {
             centroDeCusto: e.target.value
         })
     }
+
 
     handleNotafiscal = (e) => {
         console.log("entrou na descrição")
@@ -149,6 +172,18 @@ class CadastroInventario extends React.Component {
                         <div className="form-group">
                             <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
                         </div>
+                        
+                        <div className="form-group">
+                            <label htmlFor="exampleSelect1">FORNECEDOR</label>
+                            <select onChange={(e) => this.handleFornecedor(e)} style={{ border: "2px solid black" }} className="form-control" id="exampleSelect1">
+                                <option>Selecione o Fornecedor</option>
+                                {this.state.listaDeFornecedores.map(modeloAtual => (
+
+                                    <option value={modeloAtual.id}>{modeloAtual.fornecedor} </option>
+                                ))}
+
+                            </select>
+                        </div>        
                         <div className="row">
                             <div className="col-lg-4">
                                 <label htmlFor="exampleInputEmail1">NUMERO DE SERIE</label>
