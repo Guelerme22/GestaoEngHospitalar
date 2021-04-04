@@ -515,6 +515,11 @@ class CadastroInventario extends React.Component {
 
                         </div>
 
+                        <label htmlFor="exampleInputEmail1">OBSERVAÇOES</label>
+                        <div className="form-group">
+                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Observaçoes" />
+                        </div>
+
                     </div>
 
 
@@ -527,7 +532,7 @@ class CadastroInventario extends React.Component {
 
                     <div className="alert alert-dismissible alert-success">
                         <button type="button" onClick={(e) => this.fecharAlertas()} className="close" data-dismiss="alert">×</button>
-                        <strong>Bem Vindo(a)!</strong> Operação bem Sucedida! <a href="#" className="alert-link">{this.state.mensagemSucesso}</a>.
+                        <strong>Equipamento Cadastrado!</strong> Equipamento esta na aba "INVENTARIO" <a href="#" className="alert-link">{this.state.mensagemSucesso}</a>.
 </div>
                 </div>
                     : false}
