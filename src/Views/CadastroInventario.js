@@ -303,7 +303,7 @@ class CadastroInventario extends React.Component {
     render() {
         return (<div>
             <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
-                <h2>INVENTÁRIO</h2>
+                <h2>CADASTRO DE INVENTÁRIO</h2>
                 <hr></hr>
 
             </div>
