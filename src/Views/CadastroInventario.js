@@ -15,6 +15,7 @@ class CadastroInventario extends React.Component {
         valorDaCompra: "",
         dataDaAquisicao: "",
         inicioDaGarantia: "",
+        listaCentros:[],
         listaDeModelos: [],
         mensagemSucesso: null,
         utilizaAcessorios: true,
@@ -27,7 +28,7 @@ class CadastroInventario extends React.Component {
     componentDidMount() {
         this.listarModelos()
         this.listarFornecedores()
-
+        this.listarCentroCusto()
     }
     cadastrarInventario = () => {
         axios.post('https://engenharia-gestao-hospitalar.herokuapp.com/inventario', {
@@ -39,8 +40,10 @@ class CadastroInventario extends React.Component {
             fornecedor: {
                 id: this.state.fornecedorIdEscolhido
             },
+            centroDeCusto: {
+                id: this.state.centroDeCustoIdEscolhido
+            },
             fabricante: this.state.fabricante,
-            centroCusto: this.state.centroCusto,
             valorCompra: this.state.valorDaCompra,
             taxaDepreciacao: this.state.taxaDepreciacao,
             notaFiscal: this.state.notaFiscal,
@@ -123,6 +126,29 @@ class CadastroInventario extends React.Component {
         console.log("o valor da variavel fornecer:", this.state.fornecedor)
     }
 
+    handleCentro = (e) => {
+        console.log("ainda não, ",e.target.value)
+        this.setState({
+            centroDeCusto: e.target.value
+        }, () => {
+            this.setState({
+                centroDeCustoIdEscolhido: e.target.value
+            })
+        })
+        console.log("o valor da variavel fornecer:", this.state.centroDeCusto)
+    }
+
+    listarCentroCusto = () => {
+        axios.get(`https://engenharia-gestao-hospitalar.herokuapp.com/centro-de-custo/${this.context.user}`).then(response => {
+            this.setState({
+                listaCentros: response.data
+            })
+            console.log("deu certo chamar", this.state.listaCentro)
+        }).catch(error => {
+            console.log("deu erro")
+        })
+    }
+
 
     handleDescricao = (e) => {
         console.log("entrou na descrição")
@@ -157,12 +183,6 @@ class CadastroInventario extends React.Component {
         })
     }
 
-    handleCentro = (e) => {
-        console.log("entrou no centro de custo")
-        this.setState({
-            centroDeCusto: e.target.value
-        })
-    }
 
 
     handleNotafiscal = (e) => {
@@ -360,11 +380,17 @@ class CadastroInventario extends React.Component {
                         </div>
 
 
-                        <label htmlFor="exampleInputEmail1">CENTRO DE CUSTO</label>
                         <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleCentro(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Centro de Custo" />
-                        </div>
+                            <label htmlFor="exampleSelect1">CENTRO DE CUSTO</label>
+                            <select onChange={(e) => this.handleCentro(e)} style={{ border: "2px solid black" }} className="form-control" id="exampleSelect1">
+                                <option>Selecione o Centro de Custo</option>
+                                {this.state.listaCentros.map(centroAtual => (
 
+                                    <option value={centroAtual.id}>{centroAtual.bloco} {centroAtual.sala.sala}</option>
+                                ))}
+
+                            </select>
+                        </div>
                         <div className="row">
                             <div className="col-lg-6">
                                 <label htmlFor="exampleInputEmail1">DATA DE AQUISIÇÃO</label>

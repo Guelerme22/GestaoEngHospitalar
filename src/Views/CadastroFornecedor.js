@@ -124,8 +124,8 @@ class CadastrarFornecedor extends React.Component {
             <input style={{border:"2px solid black"}} onChange={(e) => this.handleEndereco(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Endereço" />
           </div>
           
-          
-          <div className="form-group" style={{ marginBottom: "20px", marginTop: "20px" }}>
+          <div className="row">
+          <div className="form-group" style={{ marginBottom: "20px", marginTop: "20px", paddingLeft: "4%", paddingRight: "4%" }}>
             <label htmlFor="exampleInputEmail1">Email</label>
             <input style={{border:"2px solid black"}} onChange={(e) => this.handleEmail(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
           </div>
@@ -137,7 +137,7 @@ class CadastrarFornecedor extends React.Component {
           
           </div>
           
-          <div className="form-group" style={{ marginBottom: "20px", marginTop: "20px" }}>
+          <div className="form-group" style={{ marginBottom: "20px", marginTop: "20px", paddingLeft: "4%", paddingRight: "4%"}}>
             <label htmlFor="exampleInputEmail1">WhatsApp</label>
             <input style={{border:"2px solid black"}} onChange={(e) => this.handleWhatsApp(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="WhatsApp" />
           </div>
@@ -145,6 +145,7 @@ class CadastrarFornecedor extends React.Component {
           <div className="form-group" style={{ marginBottom: "20px", marginTop: "20px" }}>
             <label htmlFor="exampleInputEmail1">Pessoa de Contato</label>
             <input style={{border:"2px solid black"}} onChange={(e) => this.handlePessoa(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Pessoa de Contato" />
+          </div>
           </div>
           
 
@@ -175,9 +176,9 @@ class CadastrarFornecedor extends React.Component {
                   <td>{fornecedorAtual.fornecedor}</td>
                   <td>{fornecedorAtual.endereco}</td>
                   <td>{fornecedorAtual.email}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td>{fornecedorAtual.telefone}</td>
+                  <td>{fornecedorAtual.whatsapp}</td>
+                  <td>{fornecedorAtual.pessoacontato}</td>
                   <td > <svg onClick = {(e)=> this.deletarFornecedor(fornecedorAtual.id)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
   <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>

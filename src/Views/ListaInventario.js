@@ -49,6 +49,8 @@ class ListaInventario extends React.Component {
                 <th scope="col">Modelo</th>
                 <th scope="col">Descrição Simplificada</th>
                 <th scope="col">Fornecedor</th>
+                <th scope="col">Centro De Custo</th>
+                <th scope="col">Detalhe (CC)</th>
                 <th scope="col">Numero de Serie</th>
                 <th scope="col">Nota Fiscal</th>
                 <th scope="col">Valor da Compra</th>
@@ -75,6 +77,8 @@ class ListaInventario extends React.Component {
                   <td>{inventarioAtual.modelo.modelo}</td>
                   <td>{inventarioAtual.descricao}</td>
                   <td>{inventarioAtual.fornecedor.fornecedor}</td>
+                  <td>{inventarioAtual.centroDeCusto.bloco} - {inventarioAtual.centroDeCusto.sala.sala}</td>
+                  <td>{inventarioAtual.centroDeCusto.detalhes}</td>
                   <td>{inventarioAtual.numeroSerie}</td>
                   <td>{inventarioAtual.notaFiscal}</td>
                   <td>{inventarioAtual.valorCompra}</td>
