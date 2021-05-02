@@ -11,7 +11,7 @@ function App() {
   return (
     <ProvedorAutenticacao>
 
-    <div className="App">
+    <div className="App" >
       <Menu></Menu>
       <Rotas></Rotas>
     </div>

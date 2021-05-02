@@ -106,10 +106,11 @@ console.log("entrou aqui ", id.replace(".","").replace(".","").replace(".","").r
 
 
     } else {
-    return (<div>
-      <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
+    return (<div className="fundo-cinza">
+      <div className= "container-branco">
+      <div className="col-lg-12" style={{  marginBottom: "30px" }}>
         <h2>Login</h2>
-        <hr></hr>
+      
 
         
       </div>
@@ -167,6 +168,7 @@ console.log("entrou aqui ", id.replace(".","").replace(".","").replace(".","").r
 
 
 
+    </div>
 
 
 
