@@ -189,6 +189,7 @@ class CadastrarFornecedor extends React.Component {
             </tbody>
           </table>
           </div>
+          <br></br>
 
           {this.state.menssagemDeErro == null? false :
           <div className="alert alert-dismissible alert-danger">
@@ -197,7 +198,6 @@ class CadastrarFornecedor extends React.Component {
       </div>
       }
 
-          
         </div>
       </div>
     </div>
