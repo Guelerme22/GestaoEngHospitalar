@@ -90,7 +90,7 @@ class CadastroModelo extends React.Component {
                 <div className="row">
                     <div className="col-lg-6" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
                         <div className="form-group">
-                            <label htmlFor="exampleSelect1">SELECIONE O BLOCO</label>
+                            <label htmlFor="exampleSelect1">BLOCO/CLINICA</label>
                             <select onChange={(e) => this.handleMaquina(e)} className="form-control" id="exampleSelect1">
                                 <option value={null}>Bloco</option>
 
@@ -100,7 +100,12 @@ class CadastroModelo extends React.Component {
                             </select>
                         </div>
                         <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
-                            <label htmlFor="exampleInputEmail1">CENTRO DE CUSTO</label>
+                            <label htmlFor="exampleInputEmail1">SALA (LABORATÓRIO)</label>
+                            <input style={{border:"2px solid black"}} onChange={(e) => this.handleModelo(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="centro de custo" />
+                        </div>
+
+                        <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
+                            <label htmlFor="exampleInputEmail1">LOCALIZAÇÃO</label>
                             <input style={{border:"2px solid black"}} onChange={(e) => this.handleModelo(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="centro de custo" />
                         </div>
                         <button onClick={(e) => this.cadastrar()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
