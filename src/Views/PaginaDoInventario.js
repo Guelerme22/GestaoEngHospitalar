@@ -5,7 +5,11 @@ import GerarQr from '../Component/GerarQr'
 class PaginaDoInventario extends React.Component {
 
   state = {
-    inventario :                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       {}
+    inventario :
+     {modelo:{modelo:''},
+    fornecedor:{fornecedor:''}}
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
   }
   componentDidMount() {
     this.consutarInventario()
@@ -15,7 +19,7 @@ class PaginaDoInventario extends React.Component {
   consutarInventario = () => {
     axios.get(`https://engenharia-gestao-hospitalar.herokuapp.com/inventario/${this.props.match.params.id}`).then(response => {
       this.setState({
-        inventario: response.data
+        inventario: response.data,
       })
     }).catch(error => {
 
@@ -38,7 +42,21 @@ class PaginaDoInventario extends React.Component {
         </div>
         <div className="col-lg-6">
           Página do inventário 
+          <ul>
+            <li>Descricao: {this.state.inventario.descricao}</li>
+
+            <li>Modelo:  {this.state.inventario.modelo.modelo}</li>
+
+            <li>{this.state.inventario.fornecedor.fornecedor}</li>
+
+
+            <li>{this.state.inventario.descricao}</li>
+
+
+
+          </ul>
           {this.state.inventario.descricao}
+        
 
         </div>
       </div>

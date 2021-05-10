@@ -28,6 +28,20 @@ class ListaInventario extends React.Component {
         this.props.history.push(`/pagina-inventario/${id}`)
 
     }
+
+    deletarInventario = (idRecebido) =>{
+      axios.post("https://engenharia-gestao-hospitalar.herokuapp.com/inventario/deletar", {
+        id: idRecebido
+      }).then(response=>{
+        this.listarInventario()
+  
+      }).catch(error =>{
+        this.setState({
+          menssagemDeErro: error.response.data.error
+        })
+  
+      })
+    }
   
 
     render() {
@@ -71,30 +85,30 @@ class ListaInventario extends React.Component {
             </thead>
             <tbody>
               {this.state.listaInventario.map(inventarioAtual => (
-                <tr onClick = {(e) => this.redirecionar(inventarioAtual.id)}>
+                <tr >
                   <th scope="row">{inventarioAtual.id}</th>
-                  <td>{inventarioAtual.modelo.equipamento.equipamento}</td>
-                  <td>{inventarioAtual.modelo.modelo}</td>
-                  <td>{inventarioAtual.descricao}</td>
-                  <td>{inventarioAtual.fornecedor.fornecedor}</td>
-                  <td>{inventarioAtual.centroDeCusto.bloco} - {inventarioAtual.centroDeCusto.sala.sala}</td>
-                  <td>{inventarioAtual.centroDeCusto.detalhes}</td>
-                  <td>{inventarioAtual.numeroSerie}</td>
-                  <td>{inventarioAtual.notaFiscal}</td>
-                  <td>{inventarioAtual.valorCompra}</td>
-                  <td>{inventarioAtual.anoAquisicao}</td>
-                  <td>{inventarioAtual.inicioGarantia}</td>
-                  <td>{inventarioAtual.quaisAcessorios}</td>
-                  <td>{inventarioAtual.quaisGases}</td>
-                  <td>{inventarioAtual.potencia}</td>
-                  <td>{inventarioAtual.corrente}</td>
-                  <td>{inventarioAtual.alimentacaoEletrica}</td>
-                  <td>{inventarioAtual.altura}</td>
-                  <td>{inventarioAtual.peso}</td>
-                  <td>{inventarioAtual.largura}</td>
-                  <td>{inventarioAtual.comprimento}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.modelo.equipamento.equipamento}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.modelo.modelo}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.descricao}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.fornecedor.fornecedor}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.centroDeCusto.bloco} - {inventarioAtual.centroDeCusto.sala.sala}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.centroDeCusto.detalhes}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.numeroSerie}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.notaFiscal}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.valorCompra}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.anoAquisicao}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.inicioGarantia}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.quaisAcessorios}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.quaisGases}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.potencia}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.corrente}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.alimentacaoEletrica}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.altura}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.peso}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.largura}</td>
+                  <td onClick = {(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.comprimento}</td>
                   <td>{inventarioAtual.observacao}</td>
-                  <td > <svg onClick = {(e)=> this.deletarFornecedor(inventarioAtual.id)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                  <td > <svg onClick = {(e)=> this.deletarInventario(inventarioAtual.id)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
   <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
 </svg></td>

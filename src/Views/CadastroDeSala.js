@@ -58,6 +58,9 @@ class CadastroSala extends React.Component {
             this.listarSala()
 
         }).catch(error => {
+            this.setState({
+                menssagemDeErro: "Erro ao deletar sala! Esta sendo usada por Centro de Custo."
+              })
 
 
         })

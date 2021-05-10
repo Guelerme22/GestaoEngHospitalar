@@ -29,6 +29,9 @@ class CadastroModelo extends React.Component {
           this.listarModelo()
     
         }).catch(error =>{
+            this.setState({
+                menssagemDeErro: "Erro ao deletar Modelo! Esta sendo utiliazdo."
+              })
     
         })
       }
@@ -100,7 +103,7 @@ class CadastroModelo extends React.Component {
                             </select>
                         </div>
                         <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
-                            <label htmlFor="exampleInputEmail1">Modelo</label>
+                            <label htmlFor="exampleInputEmail1">Modelo / Marca</label>
                             <input style={{border:"2px solid black"}} onChange={(e) => this.handleModelo(e)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Modelo" />
                         </div>
                         <button onClick={(e) => this.cadastrar()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
@@ -112,7 +115,7 @@ class CadastroModelo extends React.Component {
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Modelo Cadastrados</th>
+                                    <th scope="col">Modelo / Marca Cadastrados</th>
                                     <th scope="col">Equipamento Associado</th>
                                     <th scope="col"></th>
                                 </tr>

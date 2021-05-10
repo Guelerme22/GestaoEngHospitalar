@@ -22,6 +22,10 @@ class CadastroInventario extends React.Component {
         listaDeFornecedores: [],
         utilizaGases: true,
         alimentacaoHidraulica: true,
+        observacao:"",
+        equipamentoPreenchido: true,
+        fornecedorPreenchido: true,
+        centroPreenchido: true,
 
     }
 
@@ -30,7 +34,38 @@ class CadastroInventario extends React.Component {
         this.listarFornecedores()
         this.listarCentroCusto()
     }
+
+    cadastrarInventarioValidacao = () =>{
+        var validado = true;
+        if (this.state.centroDeCustoIdEscolhido == null || this.state.centroDeCustoIdEscolhido == ''){
+            validado = false;
+            this.setState({
+                centroPreenchido : false
+            })
+        }
+
+        if (this.state.modeloIdEscolhido == null || this.state.modeloIdEscolhido == ''){
+            validado = false;
+            this.setState({
+                equipamentoPreenchido : false
+            })
+        }
+        if (this.state.fornecedorIdEscolhido == null || this.state.fornecedorIdEscolhido == ''){
+            validado = false;
+            this.setState({
+                fornecedorPreenchido : false
+            })
+        }
+
+        if (validado == true){
+            this.cadastrarInventario()
+            
+        }
+        
+    }
+    
     cadastrarInventario = () => {
+
         axios.post('https://engenharia-gestao-hospitalar.herokuapp.com/inventario', {
             inventario: this.state.inventario,
             descricao: this.state.descricaoSimplificada,
@@ -67,6 +102,7 @@ class CadastroInventario extends React.Component {
             utilizaAcessorios: this.state.utilizaAcessorios,
             quaisAcessorios: this.state.quaisAcessorios,
             alimentacaoEletrica: this.state.alimentacaoEletrica,
+            observacao: this.state.observacao,
             usuario: {
                 cpf: this.context.user
             }
@@ -117,6 +153,9 @@ class CadastroInventario extends React.Component {
 
     handleFornecedor = (e) => {
         this.setState({
+            fornecedorPreenchido: true
+        })
+        this.setState({
             fornecedor: e.target.value
         }, () => {
             this.setState({
@@ -128,6 +167,9 @@ class CadastroInventario extends React.Component {
 
     handleCentro = (e) => {
         console.log("ainda não, ",e.target.value)
+        this.setState({
+            centroPreenchido : true
+        })
         this.setState({
             centroDeCusto: e.target.value
         }, () => {
@@ -167,6 +209,9 @@ class CadastroInventario extends React.Component {
 
     handleModelo = (e) => {
         console.log("entrou no modelo", e.target.value)
+        this.setState({
+            equipamentoPreenchido : true
+        })
         this.setState({
             modelo: e.target.value
         }, () => {
@@ -315,6 +360,13 @@ class CadastroInventario extends React.Component {
         })
     }
 
+    handleObservacao = (e) => {
+        console.log("entrou na descrição")
+        this.setState({
+            observacao: e.target.value
+        })
+    }
+
     mostrarValorDasVariaveis = () => {
         console.log("as variavesis sao", this.state.descricaoSimplificada, this.state.numeroDeSerie, this.state.centroDeCusto)
 
@@ -322,18 +374,18 @@ class CadastroInventario extends React.Component {
 
     render() {
         return (<div>
-            <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
+            <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px"}}>
                 <h2>CADASTRO DE INVENTÁRIO</h2>
                 <hr></hr>
 
             </div>
-            <div className="row" style={{ marginBottom: '100px' }}>
-                <div className="col-lg-12" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
+            <div className="row" style={{ marginBottom: '60px' }}>
+                <div className="col-lg-12" style={{ paddingLeft: "10%", paddingRight: "10%" }}>
 
                     <div className="form-group" style={{ marginBottom: "30px", marginTop: "30px" }}>
-                        <div className="form-group">
-                            <label htmlFor="exampleSelect1">EQUIPAMENTO</label>
-                            <select onChange={(e) => this.handleModelo(e)} style={{ border: "2px solid black" }} className="form-control" id="exampleSelect1">
+                        <div className= {this.state.equipamentoPreenchido ? "form-group": "form-group has-danger"}>
+                            <label htmlFor="exampleSelect1">EQUIPAMENTO <label style={{color:'red'}}>*</label></label>
+                            <select  onChange={(e) => this.handleModelo(e)} style={{ border: this.state.equipamentoPreenchido ? "1px solid black" : "1px solid red" , borderRadius: '10px'}} className={this.state.equipamentoPreenchido ? "form-control": "form-control is-invalid"} id="exampleSelect1">
                                 <option>Selecione o Equipamento e modelo</option>
                                 {this.state.listaDeModelos.map(modeloAtual => (
 
@@ -341,15 +393,16 @@ class CadastroInventario extends React.Component {
                                 ))}
 
                             </select>
+                            <div className="invalid-feedback">Esse campo é obrigatório!</div>
                         </div>
                         <label htmlFor="exampleInputEmail1">DESCRIÇÃO SIMPLIFICADA</label>
                         <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
+                            <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Descrição Simplificada" />
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="exampleSelect1">FORNECEDOR</label>
-                            <select onChange={(e) => this.handleFornecedor(e)} style={{ border: "2px solid black" }} className="form-control" id="exampleSelect1">
+                        <div className={this.state.fornecedorPreenchido ? "form-group": "form-group has-danger"}>
+                            <label htmlFor="exampleSelect1">FORNECEDOR <label style={{color:'red'}}>*</label></label>
+                            <select onChange={(e) => this.handleFornecedor(e)} style={{ border: this.state.fornecedorPreenchido ? "1px solid black" : "1px solid red", borderRadius: '10px'  }} className={this.state.fornecedorPreenchido ? "form-control": "form-control is-invalid"} id="exampleSelect1">
                                 <option>Selecione o Fornecedor</option>
                                 {this.state.listaDeFornecedores.map(modeloAtual => (
 
@@ -357,32 +410,34 @@ class CadastroInventario extends React.Component {
                                 ))}
 
                             </select>
+                            <div className="invalid-feedback">Esse campo é obrigatório!</div>
+
                         </div>
                         <div className="row">
                             <div className="col-lg-4">
                                 <label htmlFor="exampleInputEmail1">NUMERO DE SERIE</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleNserie(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero de Série" />
+                                    <input style={{ border: "1px solid black" ,borderRadius: '10px' }} type="email" onChange={(e) => this.handleNserie(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Numero de Série" />
                                 </div>
                             </div>
                             <div className="col-lg-4">
                                 <label htmlFor="exampleInputEmail1">NOTA FISCAL</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleNotafiscal(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nota Fiscal" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleNotafiscal(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nota Fiscal" />
                                 </div>
                             </div>
                             <div className="col-lg-4">
                                 <label htmlFor="exampleInputEmail1">VALOR DA COMPRA</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleValorcompra(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Valor da Compra" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleValorcompra(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Valor da Compra" />
                                 </div>
                             </div>
                         </div>
 
 
-                        <div className="form-group">
-                            <label htmlFor="exampleSelect1">CENTRO DE CUSTO</label>
-                            <select onChange={(e) => this.handleCentro(e)} style={{ border: "2px solid black" }} className="form-control" id="exampleSelect1">
+                        <div className={this.state.fornecedorPreenchido ? "form-group": "form-group has-danger"}>
+                            <label htmlFor="exampleSelect1">CENTRO DE CUSTO <label style={{color:'red'}}>*</label></label>
+                            <select onChange={(e) => this.handleCentro(e)} style={{ border: this.state.centroPreenchido ? "1px solid black" : "1px solid red", borderRadius: '10px'  }} className={this.state.centroPreenchido ? "form-control": "form-control is-invalid"} id="exampleSelect1">
                                 <option>Selecione o Centro de Custo</option>
                                 {this.state.listaCentros.map(centroAtual => (
 
@@ -390,19 +445,20 @@ class CadastroInventario extends React.Component {
                                 ))}
 
                             </select>
+                            <div className="invalid-feedback">Esse campo é obrigatório!</div>
                         </div>
                         <div className="row">
                             <div className="col-lg-6">
                                 <label htmlFor="exampleInputEmail1">DATA DE AQUISIÇÃO</label>
-                                <div className="form-group" style={{ border: "2px solid black" }}>
-                                    <input type="date" onChange={(e) => this.handleDataaquisicao(e)} className="form-control" ></input>
+                                <div className="form-group" >
+                                    <input type="date" style={{ border: "1px solid black",borderRadius: '10px' }} onChange={(e) => this.handleDataaquisicao(e)} className="form-control" ></input>
                                 </div>
                             </div>
 
                             <div className="col-lg-6">
                                 <label htmlFor="exampleInputEmail1">INICIO DA GARANTIA</label>
-                                <div className="form-group" style={{ border: "2px solid black" }}>
-                                    <input type="date" onChange={(e) => this.handleDatagarantia(e)} className="form-control" ></input>
+                                <div className="form-group" >
+                                    <input type="date" style={{ border: "1px solid black",borderRadius: '10px' }} onChange={(e) => this.handleDatagarantia(e)} className="form-control" ></input>
                                 </div>
                             </div>
                         </div>
@@ -411,20 +467,20 @@ class CadastroInventario extends React.Component {
                             <div className="col-lg-4">
                                 <label htmlFor="exampleInputEmail1">POTENCIA</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handlePotencia(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Potencia" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handlePotencia(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Potencia" />
                                 </div>
                             </div>
 
                             <div className="col-lg-4">
                                 <label htmlFor="exampleInputEmail1">CORRENTE</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleCorrente(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Corrente" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleCorrente(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Corrente" />
                                 </div>
                             </div>
                             <div className="col-lg-4">
                                 <label htmlFor="exampleInputEmail1">ALIMENTAÇÃO ELETRICA</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleAlimentacaoEletrica(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Alimentação Eletrica" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleAlimentacaoEletrica(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Alimentação Eletrica" />
                                 </div>
                             </div>
                         </div>
@@ -433,25 +489,25 @@ class CadastroInventario extends React.Component {
                             <div className="col-lg-3">
                                 <label htmlFor="exampleInputEmail1">PESO</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handlePeso(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Peso" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handlePeso(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Peso" />
                                 </div>
                             </div>
                             <div className="col-lg-3">
                                 <label htmlFor="exampleInputEmail1">ALTURA</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleAltura(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Altura" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleAltura(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Altura" />
                                 </div>
                             </div>
                             <div className="col-lg-3">
                                 <label htmlFor="exampleInputEmail1">LARGURA</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleLargura(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Largura" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleLargura(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Largura" />
                                 </div>
                             </div>
                             <div className="col-lg-3">
                                 <label htmlFor="exampleInputEmail1">COMPRIMENTO</label>
                                 <div className="form-group">
-                                    <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleComprimento(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Comprimento" />
+                                    <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleComprimento(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Comprimento" />
                                 </div>
                             </div>
                         </div>
@@ -517,7 +573,7 @@ class CadastroInventario extends React.Component {
                                     <label htmlFor="exampleInputEmail1">QUAIS GASES?</label>
                                     <label htmlFor="exampleInputEmail1"></label>
                                     <div className="form-group">
-                                        <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleQuaisGases(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Quais Gases?" />
+                                        <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleQuaisGases(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Quais Gases?" />
                                     </div>
                                 </div>
                                 : false
@@ -529,7 +585,7 @@ class CadastroInventario extends React.Component {
                                     <label htmlFor="exampleInputEmail1">QUAIS ACESSORIOS?</label>
                                     <label htmlFor="exampleInputEmail1"></label>
                                     <div className="form-group">
-                                        <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleQuaisAcessorios(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Quais acessorio?" />
+                                        <input style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleQuaisAcessorios(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Quais acessorio?" />
                                     </div>
                                 </div>
                                 : false
@@ -543,15 +599,17 @@ class CadastroInventario extends React.Component {
 
                         <label htmlFor="exampleInputEmail1">OBSERVAÇOES</label>
                         <div className="form-group">
-                            <input style={{ border: "2px solid black" }} type="email" onChange={(e) => this.handleDescricao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Observaçoes" />
+                            <textarea  rows="3" style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleObservacao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Observaçoes" />
                         </div>
 
                     </div>
+<br></br>
+<br>
+</br>
 
 
 
-
-                    <button onClick={(e) => this.cadastrarInventario()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
+                    <button onClick={(e) => this.cadastrarInventarioValidacao()} type="button" style={{ width: "100%" }} className="btn btn-outline-success">Cadastrar</button>
 
                     <div style={{marginTop: "3%", marginBottom:"3%"}}>
                 {this.state.mensagemSucesso ? <div>
