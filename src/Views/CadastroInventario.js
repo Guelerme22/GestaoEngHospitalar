@@ -23,6 +23,8 @@ class CadastroInventario extends React.Component {
         utilizaGases: true,
         alimentacaoHidraulica: true,
         observacao:"",
+        eletrica:"",
+        predial:"",
         equipamentoPreenchido: true,
         fornecedorPreenchido: true,
         centroPreenchido: true,
@@ -103,6 +105,8 @@ class CadastroInventario extends React.Component {
             quaisAcessorios: this.state.quaisAcessorios,
             alimentacaoEletrica: this.state.alimentacaoEletrica,
             observacao: this.state.observacao,
+            instrucoesSegurancaEletrica: this.state.eletrica,
+            instrucoesPredial:this.state.predial,
             usuario: {
                 cpf: this.context.user
             }
@@ -367,6 +371,20 @@ class CadastroInventario extends React.Component {
         })
     }
 
+    handleEletrica = (e) => {
+        console.log("entrou na descrição")
+        this.setState({
+            eletrica: e.target.value
+        })
+    }
+
+    handlePredial = (e) => {
+        console.log("entrou na descrição")
+        this.setState({
+            predial: e.target.value
+        })
+    }
+
     mostrarValorDasVariaveis = () => {
         console.log("as variavesis sao", this.state.descricaoSimplificada, this.state.numeroDeSerie, this.state.centroDeCusto)
 
@@ -600,6 +618,16 @@ class CadastroInventario extends React.Component {
                         <label htmlFor="exampleInputEmail1">OBSERVAÇOES</label>
                         <div className="form-group">
                             <textarea  rows="3" style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleObservacao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Observaçoes" />
+                        </div>
+
+                        <label htmlFor="exampleInputEmail1">SEGURANÇA ELÉTRICA</label>
+                        <div className="form-group">
+                            <textarea  rows="3" style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleEletrica(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Segurança Elétrica" />
+                        </div>
+
+                        <label htmlFor="exampleInputEmail1">MANUTEÇÃO PREDIAL</label>
+                        <div className="form-group">
+                            <textarea  rows="3" style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handlePredial(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Manutenção Predial" />
                         </div>
 
                     </div>
