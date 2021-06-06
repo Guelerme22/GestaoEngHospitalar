@@ -12,6 +12,10 @@ class ListaInventario extends React.Component {
     equipamentoFilter:'',
     modeloFilter:'',
     fornecedorFilter:'',
+    centroFilter:'',
+    detalheFilter:'',
+    numeroFilter:'',
+
   }
 
   componentDidMount() {
@@ -61,6 +65,24 @@ class ListaInventario extends React.Component {
     })
   }
 
+  handleCentroFilter (e){
+    this.setState({
+      centroFilter: e.target.value
+    })
+  }
+
+  handleDetalheFilter (e){
+    this.setState({
+      detalheFilter: e.target.value
+    })
+  }
+
+  handleNumeroFilter (e){
+    this.setState({
+      numeroFilter: e.target.value
+    })
+  }
+
   filtrar = () =>{
     console.log("entrouem filtrar")
     var listaPosFiltro= this.state.listaInventario;
@@ -79,6 +101,18 @@ class ListaInventario extends React.Component {
 
     if (this.state.fornecedorFilter != null && this.state.fornecedorFilter != ''){
       listaPosFiltro = listaPosFiltro.filter(item => (item.fornecedor.fornecedor.toUpperCase().includes(this.state.fornecedorFilter.toUpperCase())))
+    }
+
+    if (this.state.centroFilter != null && this.state.centroFilter != ''){
+      listaPosFiltro = listaPosFiltro.filter(item => (item.centroDeCusto.bloco.toUpperCase().includes(this.state.centroFilter.toUpperCase())))
+    }
+
+    if (this.state.detalheFilter != null && this.state.detalheFilter != ''){
+      listaPosFiltro = listaPosFiltro.filter(item => (item.centroDeCusto.detalhes.toUpperCase().includes(this.state.detalheFilter.toUpperCase())))
+    }
+
+    if (this.state.numeroFilter != null && this.state.numeroFilter != ''){
+      listaPosFiltro = listaPosFiltro.filter(item => (item.numeroSerie.toUpperCase().includes(this.state.numeroFilter.toUpperCase())))
     }
 
     this.setState({
@@ -168,6 +202,24 @@ class ListaInventario extends React.Component {
                   this.filtrar()
                 }
               }}placeholder="Fornecedor"></input></th>
+
+               <th scope="row"><input type="text" onChange ={(e) => this.handleCentroFilter(e)} value = {this.state.centroFilter} className= "input-search"  onKeyPress={event => {
+                if (event.key === 'Enter') {
+                  this.filtrar()
+                }
+              }}placeholder="BLOCO"></input></th>
+
+               <th scope="row"><input type="text" onChange ={(e) => this.handleDetalheFilter(e)} value = {this.state.detalheFilter} className= "input-search"  onKeyPress={event => {
+                if (event.key === 'Enter') {
+                  this.filtrar()
+                }
+              }}placeholder="Detalhe (CC)"></input></th>
+
+              <th scope="row"><input type="text" onChange ={(e) => this.handleNumeroFilter(e)} value = {this.state.numeroFilter} className= "input-search"  onKeyPress={event => {
+                if (event.key === 'Enter') {
+                  this.filtrar()
+                }
+              }}placeholder="Numero de Serie"></input></th>
                   <td></td>
                   <td></td>
                   <td></td>
