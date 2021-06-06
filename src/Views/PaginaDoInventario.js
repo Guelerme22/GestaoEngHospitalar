@@ -5,12 +5,24 @@ import GerarQr from '../Component/GerarQr'
 class PaginaDoInventario extends React.Component {
 
   state = {
-    inventario :null                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+    inventario :null,
+    manutencoes: []
+
   }
   componentDidMount() {
     this.consutarInventario()
-  }
+    this.consultarManutencoes()
 
+  }
+  consultarManutencoes = () => {
+    axios.get(`https://engenharia-gestao-hospitalar.herokuapp.com/manutencao/inventario/${this.props.match.params.id}`).then(response => {
+      this.setState({
+        manutencoes: response.data,
+      })
+    }).catch(error => {
+
+    })
+  }
 
   consutarInventario = () => {
     axios.get(`https://engenharia-gestao-hospitalar.herokuapp.com/inventario/${this.props.match.params.id}`).then(response => {
@@ -25,26 +37,32 @@ class PaginaDoInventario extends React.Component {
   render() {
 
 
-    return (<div style={{paddingLeft: "10%", paddingRight:"10%" , paddingTop:"10%", backgroundColor:"#e0e0d1", height:"100vh", marginTop:"-30px"}} >
+    return (<div style={{paddingLeft: "10%", paddingBottom:"10%", paddingRight:"10%" , paddingTop:"10%", backgroundColor:"#e0e0d1" , marginTop:"-30px", height:"100" , backgroundSize:"cover", }} >
       <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
 
       </div>{this.state.inventario != null ?
-      <div  style={{ marginBottom: '100px', border:"1px solid #e0e0d1" ,  borderRadius:"20px", backgroundColor:"white"}} >
+      <div  style={{ border:"1px solid #e0e0d1" ,  borderRadius:"20px", backgroundColor:"white",  }} >
         { <div className="col-lg-12" style={{marginTop:"-100px"}}>
 
           <GerarQr idInventario={this.props.match.params.id}  tamanho="200"></GerarQr>
         </div> } 
+        <div style={{paddingTop:"2%"}}>
+        <button type="button" className="btn btn-dark">IMPRIMIR QR-CODE</button>
+        </div>
+        
         <div className="col-lg-12" style={{paddingTop:"2%"}}>
-          <h2>{this.state.inventario.modelo.equipamento.equipamento} </h2>
+          <h2>{this.state.inventario.modelo.equipamento.equipamento} {this.state.inventario.modelo.modelo} </h2>
           </div>
         <div className="col-lg-12>" style={{paddingTop:"2%", paddingBottom:"2%"}}>
           {this.state.inventario.descricao}
+   
           </div> 
           <div style={{paddingLeft:"5%"}}>
           <ul>
           <div className = "row">
           <div className="col-lg-6" style={{paddingBottom:"2%"}}>
-          {this.state.inventario.centroDeCusto.bloco}, {this.state.inventario.centroDeCusto.sala.sala}, {this.state.inventario.centroDeCusto.detalhes ? <li>Centro de Custo: {this.state.inventario.centroDeCusto.bloco}, {this.state.inventario.centroDeCusto.sala.sala}, {this.state.inventario.centroDeCusto.detalhes}</li>:false}
+          
+            {this.state.inventario.centroDeCusto.bloco}, {this.state.inventario.centroDeCusto.sala.sala}, {this.state.inventario.centroDeCusto.detalhes ? <li>Centro de Custo: {this.state.inventario.centroDeCusto.bloco}, {this.state.inventario.centroDeCusto.sala.sala}, {this.state.inventario.centroDeCusto.detalhes}</li>:false}
 
             {this.state.inventario.observacao ? <li>Observações: {this.state.inventario.observacao}</li>:false}
 
@@ -84,11 +102,40 @@ class PaginaDoInventario extends React.Component {
 
 
           </ul>
+          
         
-        
-
+        <div style={{paddingBottom:"1%"}}>
+          <h2>MANUTENÇÕES</h2>
         </div>
+        </div>
+        <div style={{paddingLeft:"5%", paddingRight:"5%", paddingBottom:"5%"}}>
+         <table className="table table-active" style={{ borderRadius:"20px"}}>
+        
+        <tbody >
+          <tr style={{borderStyle:"hidden",}}>
+            <th scope="row">ID</th>
+            <td>FUNCIONÁRIO</td>
+            <td>DATA</td>
+            <td>TIPO</td>
+            <td>OBSERVAÇÕES</td>
+          </tr>
+  
+          {this.state.manutencoes.map(manutencaoAtual => (
+        <tr style={{borderStyle:"hidden"}}>
+        <th scope="row">{manutencaoAtual.id}</th>
+        <td>{manutencaoAtual.usuario.nomeCompleto}</td>
+        <td>{manutencaoAtual.data}</td>
+        <td>{manutencaoAtual.tipoManutencao}</td>
+        <td>{manutencaoAtual.observacoes}</td>
+      </tr>              
+      ))}
+          
+        </tbody>
+      </table>
+      </div>
+        
       </div>:false}
+      
     </div>
     );
   }
