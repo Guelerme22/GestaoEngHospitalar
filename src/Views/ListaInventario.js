@@ -15,6 +15,7 @@ class ListaInventario extends React.Component {
     centroFilter:'',
     detalheFilter:'',
     numeroFilter:'',
+    notaFilter:'',
 
   }
 
@@ -83,6 +84,12 @@ class ListaInventario extends React.Component {
     })
   }
 
+  handleNotaFilter (e){
+    this.setState({
+      notaFilter: e.target.value
+    })
+  }
+
   filtrar = () =>{
     console.log("entrouem filtrar")
     var listaPosFiltro= this.state.listaInventario;
@@ -112,7 +119,11 @@ class ListaInventario extends React.Component {
     }
 
     if (this.state.numeroFilter != null && this.state.numeroFilter != ''){
-      listaPosFiltro = listaPosFiltro.filter(item => (item.numeroSerie.toUpperCase().includes(this.state.numeroFilter.toUpperCase())))
+      listaPosFiltro = listaPosFiltro.filter(item => (item.numeroSerie!= null && item.numeroSerie.includes(this.state.numeroFilter)))
+    }
+
+    if (this.state.notaFilter != null && this.state.notaFilter != ''){
+      listaPosFiltro = listaPosFiltro.filter(item => (item.notaFiscal != null && item.notaFiscal.includes(this.state.notaFilter)))
     }
 
     this.setState({
@@ -220,6 +231,12 @@ class ListaInventario extends React.Component {
                   this.filtrar()
                 }
               }}placeholder="Numero de Serie"></input></th>
+
+              <th scope="row"><input type="text" onChange ={(e) => this.handleNotaFilter(e)} value = {this.state.notaFilter} className= "input-search"  onKeyPress={event => {
+                if (event.key === 'Enter') {
+                  this.filtrar()
+                }
+              }}placeholder="Nota Fiscal"></input></th>
                   <td></td>
                   <td></td>
                   <td></td>
