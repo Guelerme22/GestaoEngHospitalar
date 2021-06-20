@@ -620,12 +620,12 @@ class CadastroInventario extends React.Component {
                             <textarea  rows="3" style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleObservacao(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Observaçoes" />
                         </div>
 
-                        <label htmlFor="exampleInputEmail1">SEGURANÇA ELÉTRICA</label>
+                        <label htmlFor="exampleInputEmail1">MANUTENÇÃO CORRETIVA</label>
                         <div className="form-group">
                             <textarea  rows="3" style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handleEletrica(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Segurança Elétrica" />
                         </div>
 
-                        <label htmlFor="exampleInputEmail1">MANUTEÇÃO PREDIAL</label>
+                        <label htmlFor="exampleInputEmail1">MANUTEÇÃO PREVENTIVA</label>
                         <div className="form-group">
                             <textarea  rows="3" style={{ border: "1px solid black",borderRadius: '10px' }} type="email" onChange={(e) => this.handlePredial(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Manutenção Predial" />
                         </div>

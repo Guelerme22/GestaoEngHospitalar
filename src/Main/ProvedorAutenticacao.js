@@ -9,6 +9,7 @@ export const AuthConsumer = AuthContext.Consumer;
 const AuthProvider = AuthContext.Provider;
 
 
+
 async function funcionarioAutorizacao(cpf) {
     console.log("funcionarioAutorizacao", cpf)
 
@@ -17,18 +18,18 @@ async function funcionarioAutorizacao(cpf) {
     var response  = await axios.get(`https://engenharia-gestao-hospitalar.herokuapp.com/usuario/${cpf}`)
 
 
-    if (response.data.aprovado == 0){
-        token = 0;
+    if (response.data.aprovado == 3){
+        token = 3;
        
 
     } else if ( response.data.aprovado == 1){
         token = 1;
     } else {
-        token = 1;
+        token = 2;
 
     }
     
- 
+    console.log("retorno de autorização," ,token)
 
     return token;
   }

@@ -29,7 +29,7 @@ class Menu extends React.Component {
 
     this.setState({
       abrirMenu: false,
-   
+
     });
 
   };
@@ -64,55 +64,80 @@ class Menu extends React.Component {
     return (
       <div ref={node => this.node = node}>
         <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: 'black' }} >
-        <img style={{width:'130px', marginRight:'20px'}}src = {universidade}></img> 
+          <img style={{ width: '130px', marginRight: '20px' }} src={universidade}></img>
           <button onClick={this.abrirMenu} className={this.state.abrirMenu ? "navbar-toggler" : "navbar-toggler collapsed"} type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" >
             <span className="navbar-toggler-icon" />
           </button>
           <div className={this.state.abrirMenu ? "navbar-collapse collapse show" : "navbar-collapse collapse"} id="navbarColor01" >
 
 
-            {this.context.isAuthenticated  ?
+            {this.context.isAuthenticated ?
+              this.context.autorizado == 1 ?
+                <ul className="navbar-nav mr-auto" >
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/cadastro-fornecedor">Cadastrar Fornecedor</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/cadastro-modelo">Cadastrar modelo</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/cadastro-inventario">Cadastrar Inventário</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/lista-inventario">Inventário</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/cadastro-centro-de-custo">Cadastrar Centro de Custo</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/cadastro-sala">Cadastrar Sala</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/lista-inventario">Ordens de Serviço</a>
+                  </li>
+
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/cadastro-usuario-de-servico">Cadastrar Usuario de Serviço</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/cadastro-equipamento">Cadastrar Equipamento</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={this.encerrarSessao} href="#/login">Logout</a>
+                  </li>
+
+                </ul>
+                :
+
+                <ul className="navbar-nav mr-auto" >
+
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/lista-inventario">Inventário</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" href="#/lista-inventario">Ordens de Serviço</a>
+                  </li>
+
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={this.encerrarSessao} href="#/login">Logout</a>
+                  </li>
+
+                </ul>
+
+              :
               <ul className="navbar-nav mr-auto" >
+
                 <li className="nav-item">
-                  <a className="nav-link" href="#/cadastro-fornecedor">Cadastrar Fornecedor</a>
+                  <a className="nav-link" href="#/cadastro-usuario">Cadastrar-se</a>
                 </li>
+
                 <li className="nav-item">
-                  <a className="nav-link" href="#/cadastro-modelo">Cadastrar modelo</a>
+                  <a className="nav-link" href="#/login">Login</a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#/cadastro-inventario">Cadastrar Inventário</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#/lista-inventario">Inventário</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#/cadastro-centro-de-custo">Cadastrar Centro de Custo</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#/cadastro-sala">Cadastrar Sala</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#/cadastro-equipamento">Cadastrar Equipamento</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link"  onClick={this.encerrarSessao} href="#/login">Logout</a>
-                </li>
+
 
               </ul>
-              : 
-              <ul className="navbar-nav mr-auto" >
-             
-              <li className="nav-item">
-                <a className="nav-link" href="#/cadastro-usuario">Cadastrar-se</a>
-              </li>
-           
-              <li className="nav-item">
-                <a className="nav-link" href="#/login">Login</a>
-              </li>
-             
-
-            </ul>
-              }
+            }
 
 
 

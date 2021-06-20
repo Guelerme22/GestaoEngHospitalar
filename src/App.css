@@ -48,6 +48,13 @@
 .App-link {
   color: #61dafb;
 }
+.fundo-centralizado{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .sombra-inventario {
   -webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
 -moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
@@ -105,7 +112,9 @@ background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,120,121,1) 19%, rgb
 
 
 
-
+.espacamento-form{
+  padding-right: 2%;
+}
 
 
 

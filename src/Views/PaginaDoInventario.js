@@ -6,7 +6,7 @@ class PaginaDoInventario extends React.Component {
 
   state = {
     inventario :null,
-    manutencoes: []
+    manutencoes: [],
 
   }
   componentDidMount() {
@@ -34,6 +34,11 @@ class PaginaDoInventario extends React.Component {
     })
   }
 
+  redirecionar = () =>{
+    this.props.history.push(`/gerar-ordem/${this.props.match.params.id}`)
+
+  }
+
   render() {
 
 
@@ -48,6 +53,8 @@ class PaginaDoInventario extends React.Component {
         </div> } 
         <div style={{paddingTop:"2%"}}>
         <button type="button" className="btn btn-dark">IMPRIMIR QR-CODE</button>
+        <button type="button" onClick={()=> this.redirecionar()} className="btn btn-dark">GERAR ORDEM</button>
+
         </div>
         
         <div className="col-lg-12" style={{paddingTop:"2%"}}>
@@ -118,15 +125,18 @@ class PaginaDoInventario extends React.Component {
             <td>DATA</td>
             <td>TIPO</td>
             <td>OBSERVAÇÕES</td>
+            <td>EDITAR</td>
           </tr>
   
           {this.state.manutencoes.map(manutencaoAtual => (
         <tr style={{borderStyle:"hidden"}}>
         <th scope="row">{manutencaoAtual.id}</th>
-        <td>{manutencaoAtual.usuario.nomeCompleto}</td>
+        <td>{"fgg"}</td>
         <td>{manutencaoAtual.data}</td>
         <td>{manutencaoAtual.tipoManutencao}</td>
         <td>{manutencaoAtual.observacoes}</td>
+        <td><button  type="button" onClick={()=>this.props.history.push(`/aprovar-ordem/${manutencaoAtual.id}`)} className="btn btn-dark">Aprovar</button>
+</td>
       </tr>              
       ))}
           

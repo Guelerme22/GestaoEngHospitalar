@@ -3,8 +3,9 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import axios from 'axios'
 import NumberFormat from 'react-number-format'
+import { AuthContext } from '../Main/ProvedorAutenticacao';
 
-class CadastrarUsuario extends React.Component {
+class CadastroUsuarioDeServico extends React.Component {
     state = {
         modelo: "",
         descricaoSimplificada: "",
@@ -16,13 +17,29 @@ class CadastrarUsuario extends React.Component {
         inicioDaGarantia: "",
         listaDeModelos: [],
         aprovado: 1,
-        mensagemSucesso: null
+        mensagemSucesso: null,
+        listaDeUsuarios:[],
+        
 
     }
 
     componentDidMount() {
+        this.listarUsuarioDeServico()
 
     }
+    listarUsuarioDeServico = () =>{
+        axios.get(`https://engenharia-gestao-hospitalar.herokuapp.com/usuario/servico/${this.context.user}`)
+        .then(response => {
+            this.setState({
+                listaDeUsuarios: response.data
+            })
+        }).catch(error => {
+            this.setState({
+                mensagemErro: error.response.data.error
+            })
+        })
+    }
+
     cadastrarUsuario = () => {
 
         if (this.state.cpf == '' || this.state.cpf == null){
@@ -38,12 +55,14 @@ class CadastrarUsuario extends React.Component {
             senha: this.state.senha,
             senhaConfirm: this.state.senhaConfirm,
             email: this.state.email,
-            aprovado: 1,
-            hierarquia: "0"
+            aprovado: 3, 
+            hierarquia: this.context.user
         }).then(response => {
             this.setState({
                 mensagemSucesso: "Cadastrado com sucesso"
             })
+            this.listarUsuarioDeServico()
+
         }).catch(error => {
             this.setState({
                 mensagemErro: error.response.data.error
@@ -101,11 +120,11 @@ class CadastrarUsuario extends React.Component {
     render() {
         return (<div>
             <div className="col-lg-12" style={{ marginTop: "30px", marginBottom: "30px" }}>
-                <h2>Cadastre-se</h2>
+                <h2>Cadastrar Usuario de Serviço</h2>
                 <hr></hr>
             </div>
-            <div className="row espacamento" >
-                <div className="col-lg-12" >
+            <div className="row" style={{ paddingLeft:"4%"}} >
+                <div className="col-lg-6" >
 
                     <div  >
 
@@ -158,7 +177,31 @@ class CadastrarUsuario extends React.Component {
 
             </div>
                 </div>
+            <div className="col-lg-6" style={{ paddingLeft: "4%", paddingRight: "4%" }}>
+            <table className="table table-hover" >
+  <thead>
+    <tr>
+      <th scope="col">Nome Completo</th>
+      <th scope="col">CPF</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Celular</th>
+    </tr>
+  </thead>
+  <tbody>
+    {this.state.listaDeUsuarios.map(usuarioAtual => (
+      <tr>
+        <th scope="row">{usuarioAtual.nomeCompleto}</th>
+        <td>{usuarioAtual.cpf}</td>
+        <td>{usuarioAtual.email}</td>
+        <td>{usuarioAtual.celular}</td>
+        
+      </tr>
+    ))}
 
+
+  </tbody>
+</table>
+</div>
 
 
             </div>
@@ -183,4 +226,5 @@ class CadastrarUsuario extends React.Component {
 
 
 }
-export default CadastrarUsuario
+CadastroUsuarioDeServico.contextType = AuthContext;
+export default CadastroUsuarioDeServico;
