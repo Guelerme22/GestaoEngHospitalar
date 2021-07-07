@@ -28,6 +28,7 @@ class CadastroInventario extends React.Component {
         equipamentoPreenchido: true,
         fornecedorPreenchido: true,
         centroPreenchido: true,
+        patrimonio:"",
 
     }
 
@@ -93,6 +94,7 @@ class CadastroInventario extends React.Component {
             anoFabricacao: this.state.anoFabricacao,
             dataCompra: this.state.dataCompra,
             peso: this.state.peso,
+            patrimonio: this.state.patrimonio,
             largura: this.state.largura,
             comprimento: this.state.comprimento,
             altura: this.state.altura,
@@ -232,6 +234,9 @@ class CadastroInventario extends React.Component {
         })
     }
 
+    handlePatrimonio = (e) =>{
+
+    }
 
 
     handleNotafiscal = (e) => {
@@ -452,18 +457,29 @@ class CadastroInventario extends React.Component {
                             </div>
                         </div>
 
-
-                        <div className={this.state.fornecedorPreenchido ? "form-group": "form-group has-danger"}>
+                        <div className="row">
+                            <div className="col-lg-6">
+                        <div className= {this.state.fornecedorPreenchido ? "form-group": "form-group has-danger"}>
                             <label htmlFor="exampleSelect1">CENTRO DE CUSTO <label style={{color:'red'}}>*</label></label>
+                        <div className="form-group">
                             <select onChange={(e) => this.handleCentro(e)} style={{ border: this.state.centroPreenchido ? "1px solid black" : "1px solid red", borderRadius: '10px'  }} className={this.state.centroPreenchido ? "form-control": "form-control is-invalid"} id="exampleSelect1">
                                 <option>Selecione o Centro de Custo</option>
                                 {this.state.listaCentros.map(centroAtual => (
 
-                                    <option value={centroAtual.id}>{centroAtual.bloco} {centroAtual.sala.sala}</option>
+                                    <option value={centroAtual.id}>{centroAtual.bloco} {centroAtual.sala.sala} - {centroAtual.detalhes}</option>
                                 ))}
 
                             </select>
                             <div className="invalid-feedback">Esse campo é obrigatório!</div>
+                            </div>
+                            </div>
+                            </div>
+                        <div className="col-lg-6">
+                            <label htmlFor="exampleInputEmail1">PATRIMÔNIO</label>
+                        <div className="form-group">    
+                            <input style={{ border: "1px solid black" ,borderRadius: '10px' }} type="email" onChange={(e) => this.handleNserie(e)} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Patrimônio" />
+                        </div>
+                        </div>
                         </div>
                         <div className="row">
                             <div className="col-lg-6">

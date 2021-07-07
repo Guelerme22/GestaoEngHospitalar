@@ -73,7 +73,7 @@ class CadastroSala extends React.Component {
         }).then(response => {
             this.listarSala()
             this.setState({
-                mensagemSucesso: "parabens seu arrombado!!!"
+                mensagemSucesso: "siga para o Centro de Custo!!"
             })
 
         }).catch(error => {

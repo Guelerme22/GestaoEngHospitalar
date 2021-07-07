@@ -11,6 +11,7 @@ class Menu extends React.Component {
 
   state = {
     abrirMenu: false,
+    abrirCaixa: false,
 
   };
 
@@ -23,6 +24,13 @@ class Menu extends React.Component {
       };
     });
   };
+
+  handleClicCaixa = () => {
+    this.setState({
+      abrirCaixa: !this.state.abrirCaixa
+    })
+  }
+
 
 
   handleClickOutside = event => {
@@ -69,7 +77,7 @@ class Menu extends React.Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className={this.state.abrirMenu ? "navbar-collapse collapse show" : "navbar-collapse collapse"} id="navbarColor01" >
-
+          
 
             {this.context.isAuthenticated ?
               this.context.autorizado == 1 ?
@@ -78,13 +86,28 @@ class Menu extends React.Component {
                     <a className="nav-link" href="#/cadastro-fornecedor">Cadastrar Fornecedor</a>
                   </li>
                   <li className="nav-item">
+                  <li onClick={(e) => this.handleClicCaixa()} className="nav-item dropdown">
+        <a className={this.state.abrirCaixa == true ? "nav-link dropdown-toggle show" : "nav-link dropdown-toggle"} data-bs-toggle="INVENTARIO" href="" role="button" aria-haspopup="true" aria-expanded={this.state.abrirCaixa== true ? "true" : "false"}>Dropdown</a>
+        <div className={this.state.abrirCaixa == true? "dropdown-menu show" : "dropdown-menu"} style={{}}>
+          <a className="dropdown-item" href="#/cadastro-equipamento">Cadastrar Equipamento</a>
+          <a className="dropdown-item" href="#/cadastro-modelo">Cadastrar Modelo</a>
+          <a className="dropdown-item" href="#/cadastro-fornecedor">Cadastrar Fornecedor</a>
+          <a className="dropdown-item" href="#/cadastro-sala">Cadastrar Sala</a>
+          <a className="dropdown-item" href="#/cadastro-centro-de-custo">Cadastrar Centro de Custo</a>
+          <a className="dropdown-item" href="#/cadastro-inventario">Cadastrar Inventario</a>
+          <div className="dropdown-divider" />
+          <a className="dropdown-item" href="#/lista-inventario">Seu Inventario</a>
+        </div>
+      </li>
+      </li>
+                  <li>
                     <a className="nav-link" href="#/cadastro-modelo">Cadastrar modelo</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#/cadastro-inventario">Cadastrar Inventário</a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="#/lista-inventario">Inventário</a>
+                    <a className="nav-link" href="#/lista-inventario">Seu Inventário</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#/cadastro-centro-de-custo">Cadastrar Centro de Custo</a>
@@ -112,7 +135,7 @@ class Menu extends React.Component {
                 <ul className="navbar-nav mr-auto" >
 
                   <li className="nav-item">
-                    <a className="nav-link" href="#/lista-inventario">Inventário</a>
+                    <a className="nav-link" href="#/lista-inventario-usuario">Inventário</a>
                   </li>
                   <li className="nav-item">
                     <a className="nav-link" href="#/lista-inventario">Ordens de Serviço</a>

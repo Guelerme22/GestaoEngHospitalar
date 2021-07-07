@@ -16,7 +16,6 @@ class ListaInventario extends React.Component {
     detalheFilter:'',
     numeroFilter:'',
     notaFilter:'',
-    patrimonioFilter:'',
 
   }
 
@@ -169,7 +168,6 @@ class ListaInventario extends React.Component {
                   <th scope="col">Fornecedor</th>
                   <th scope="col">Centro De Custo</th>
                   <th scope="col">Detalhe (CC)</th>
-                  <th scope="col">Patrimônio</th>
                   <th scope="col">Numero de Serie</th>
                   <th scope="col">Nota Fiscal</th>
                   <th scope="col">Valor da Compra</th>
@@ -228,8 +226,6 @@ class ListaInventario extends React.Component {
                 }
               }}placeholder="Detalhe (CC)"></input></th>
 
-              <th></th>
-
               <th scope="row"><input type="text" onChange ={(e) => this.handleNumeroFilter(e)} value = {this.state.numeroFilter} className= "input-search"  onKeyPress={event => {
                 if (event.key === 'Enter') {
                   this.filtrar()
@@ -270,7 +266,6 @@ class ListaInventario extends React.Component {
                     <td onClick={(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.fornecedor.fornecedor}</td>
                     <td onClick={(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.centroDeCusto.bloco} - {inventarioAtual.centroDeCusto.sala.sala}</td>
                     <td onClick={(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.centroDeCusto.detalhes}</td>
-                    <td></td>
                     <td onClick={(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.numeroSerie}</td>
                     <td onClick={(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.notaFiscal}</td>
                     <td onClick={(e) => this.redirecionar(inventarioAtual.id)}>{inventarioAtual.valorCompra}</td>
